@@ -1,19 +1,39 @@
-name: Rust CI/CD Pipeline
+name: Rust-Python Integration CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Install Rust
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        profile: minimal
-        override: true
-    - name: Build
-      run: cargo build --verbose
-    - name: Test
-      run: cargo test --verbose
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Rust Toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - name: Install Maturin
+        run: pip install maturin
+
+      - name: Build Rust Project with Maturin
+        run: maturin develop
+
+      - name: Run Unit Tests
+        run: python -m unittest discover
+
