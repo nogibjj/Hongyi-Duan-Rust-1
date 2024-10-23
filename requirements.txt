@@ -5,5 +5,4 @@ black
 pytest-cov
 setuptools
 setuptools-rust
-pyo3
 
