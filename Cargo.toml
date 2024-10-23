@@ -1,8 +1,8 @@
 [package]
-name = "rust_python_integration"
+name = "rust_integration"
 version = "0.1.0"
-authors = ["Your Name"]
-edition = "2021"
+authors = ["Hongyi Duan"]
+edition = "2024"
 
 [dependencies]
 pyo3 = { version = "0.16", features = ["extension-module"] }
