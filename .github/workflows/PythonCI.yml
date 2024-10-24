@@ -18,6 +18,8 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
+          python -m venv .venv
+          source .venv/bin/activate
           pip install -r requirements.txt
 
       - name: Install Rust and Maturin
@@ -30,8 +32,10 @@ jobs:
 
       - name: Build Rust extension
         run: |
+          source .venv/bin/activate  # Ensure the virtualenv is activated
           maturin develop
 
       - name: Run Python tests
         run: |
+          source .venv/bin/activate  # Activate the virtualenv again
           python -m unittest discover
