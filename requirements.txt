@@ -1,5 +1,7 @@
 pylint
 pytest
+click==7.1.2
+black==21.12b0  
 pytest-cov
 setuptools
 setuptools-rust
