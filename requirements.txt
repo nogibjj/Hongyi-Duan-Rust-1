@@ -1,6 +1,5 @@
 pylint
 pytest
-black
 pytest-cov
 setuptools
 setuptools-rust
