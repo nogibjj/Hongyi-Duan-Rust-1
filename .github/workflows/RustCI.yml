@@ -18,6 +18,8 @@ jobs:
           profile: minimal
           components: clippy, rustfmt
           override: true
+    - name: Install setuptools-rust
+      run: pip install setuptools-rust
     - name: update linux
       run: sudo apt update 
     - name: update Rust
