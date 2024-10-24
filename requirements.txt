@@ -5,8 +5,5 @@ black
 pytest-cov
 setuptools
 setuptools-rust
-<<<<<<< HEAD
 simplecalc
-=======
-maturin
->>>>>>> 4069dce573bea5ce4110634388e88707a5deec86
+
