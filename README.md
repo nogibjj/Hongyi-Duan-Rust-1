@@ -1,6 +1,7 @@
 # Hongyi-Duan-Rust-1
 
 [![Python CI/CD Pipeline](https://github.com/nogibjj/Hongyi-Duan-Rust-1/actions/workflows/PythonCI.yml/badge.svg)](https://github.com/nogibjj/Hongyi-Duan-Rust-1/actions/workflows/PythonCI.yml)
+[![Rust CI/CD Pipeline](https://github.com/nogibjj/Hongyi-Duan-Rust-1/actions/workflows/RustCI.yml/badge.svg)](https://github.com/nogibjj/Hongyi-Duan-Rust-1/actions/workflows/RustCI.yml)
 
 This project demonstrates the integration of Python and Rust, focusing on packaging a Python script into a Rust-based package. The repository includes several components like continuous integration (CI) pipelines, test scripts, and documentation that support seamless development and deployment across both programming environments.
 
