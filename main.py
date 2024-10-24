@@ -1,24 +1,27 @@
-from lib import hello_world, calculate_fibonacci, rust_integration
+import sys
+from lib import add, subtract, multiply, divide
 
 def main():
-    print("Welcome to the Python-Rust Integration tool!")
+    if len(sys.argv) != 4:
+        print("Usage: main.py [add|subtract|multiply|divide] num1 num2")
+        sys.exit(1)
+    operation = sys.argv[1]
+    num1 = float(sys.argv[2])
+    num2 = float(sys.argv[3])
 
-    # Call Python-based function
-    hello_world()
+    if operation == 'add':
+        result = add(num1, num2)
+    elif operation == 'subtract':
+        result = subtract(num1, num2)
+    elif operation == 'multiply':
+        result = multiply(num1, num2)
+    elif operation == 'divide':
+        result = divide(num1, num2)
+    else:
+        print("Unknown operation.")
+        sys.exit(1)
 
-    # Example: Calculate Fibonacci
-    try:
-        n = int(input("Enter a number to calculate Fibonacci: "))
-        print(f"Fibonacci of {n} is: {calculate_fibonacci(n)}")
-    except ValueError as e:
-        print(f"Invalid input: {e}")
-
-    # Example: Call a Rust function for fast computation
-    print("Now calling Rust for performance-critical tasks...")
-    rust_integration()
-    
-    print("Program completed successfully.")
+    print(f"The result is: {result}")
 
 if __name__ == "__main__":
     main()
-

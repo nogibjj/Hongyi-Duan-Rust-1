@@ -1,16 +1,17 @@
-def hello_world():
-    print("Hello, world! This is from Python.")
+try:
+    from rust_ext import add, subtract, multiply, divide
+except ImportError:
+    # Fallback to pure Python implementation if Rust module not available
+    def add(a, b):
+        return a + b
 
-def calculate_fibonacci(n):
-    if n < 0:
-        raise ValueError("Negative numbers are not allowed.")
-    elif n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return calculate_fibonacci(n-1) + calculate_fibonacci(n-2)
+    def subtract(a, b):
+        return a - b
 
-def rust_integration():
-    from rust_integration import hello_world as rust_hello
-    rust_hello()  # Calling Rust's version of `hello_world` for fast computation
+    def multiply(a, b):
+        return a * b
+
+    def divide(a, b):
+        if b == 0:
+            raise ValueError("Cannot divide by zero.")
+        return a / b
