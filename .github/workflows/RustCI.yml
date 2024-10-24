@@ -2,49 +2,35 @@ name: Rust CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
-
+    branches: [ "main" ]
+env:
+  CARGO_TERM_COLOR: always
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Install Python 3.x
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install Rust Toolchain
-        uses: actions-rs/toolchain@v1
-        with:
+    - uses: actions/checkout@v3
+    - uses: actions-rs/toolchain@v1
+      with:
           toolchain: stable
           profile: minimal
+          components: clippy, rustfmt
           override: true
-
-      - name: Install Maturin
-        run: pip install maturin
-
-      - name: Create Python Virtual Environment
-        run: python -m venv venv
-
-      - name: Activate Python Virtual Environment and Install Dependencies
-        run: |
-          source venv/bin/activate
-          pip install maturin
-
-      - name: Build Rust Project with Maturin
-        run: |
-          source venv/bin/activate
-          maturin develop
-
-      - name: Run Unit Tests
-        run: |
-          source venv/bin/activate
-          python -m unittest discover
+    - name: update linux
+      run: sudo apt update 
+    - name: update Rust
+      run: make install
+    - name: Check Rust versions
+      run: make rust-version
+    - name: Format
+      run: make format
+    - name: Lint
+      run: make lint
+    - name: Test
+      run: make test
+    - name: pull repository
+      run: git pull
+    - name: add rust logs
+      run: make generate_and_push
