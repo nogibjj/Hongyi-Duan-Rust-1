@@ -1,27 +1,15 @@
-import sys
-from lib import add, subtract, multiply, divide
+import lib
 
 def main():
-    if len(sys.argv) != 4:
-        print("Usage: main.py [add|subtract|multiply|divide] num1 num2")
-        sys.exit(1)
-    operation = sys.argv[1]
-    num1 = float(sys.argv[2])
-    num2 = float(sys.argv[3])
-
-    if operation == 'add':
-        result = add(num1, num2)
-    elif operation == 'subtract':
-        result = subtract(num1, num2)
-    elif operation == 'multiply':
-        result = multiply(num1, num2)
-    elif operation == 'divide':
-        result = divide(num1, num2)
-    else:
-        print("Unknown operation.")
-        sys.exit(1)
-
-    print(f"The result is: {result}")
+    print("Running Python-Rust Hybrid Tool")
+    
+    # Call a Python function
+    result_python = lib.python_function(5)
+    print(f"Python function result: {result_python}")
+    
+    # Call a Rust function (via PyO3)
+    result_rust = lib.rust_function(10)
+    print(f"Rust function result: {result_rust}")
 
 if __name__ == "__main__":
     main()

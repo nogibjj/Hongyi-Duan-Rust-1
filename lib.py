@@ -1,17 +1,9 @@
-try:
-    from rust_ext import add, subtract, multiply, divide
-except ImportError:
-    # Fallback to pure Python implementation if Rust module not available
-    def add(a, b):
-        return a + b
+import rust_lib
 
-    def subtract(a, b):
-        return a - b
+def python_function(x):
+    """Python function to return square of a number."""
+    return x * x
 
-    def multiply(a, b):
-        return a * b
-
-    def divide(a, b):
-        if b == 0:
-            raise ValueError("Cannot divide by zero.")
-        return a / b
+def rust_function(x):
+    """Rust function imported from Rust using PyO3."""
+    return rust_lib.rust_function(x)
